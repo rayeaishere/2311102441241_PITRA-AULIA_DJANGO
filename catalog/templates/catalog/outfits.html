@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Outfit Catalog{% endblock %}
+
+{% block content %}
+<h1>Outfit Catalog</h1>
+
+{% if categories %}
+    <h2>Kategori:</h2>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.name }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<hr>
+
+{% if outfits %}
+    {% for outfit in outfits %}
+        <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 20px;">
+            <h3>{{ outfit.title }} ({{ outfit.category.name }})</h3>
+            {% if outfit.image %}
+                <img src="{{ outfit.image.url }}" alt="{{ outfit.title }}" width="200">
+            {% endif %}
+            <p>{{ outfit.description }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>belum ada outfit.</p>
+{% endif %}
+{% endblock %}
