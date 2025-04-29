@@ -1,32 +1,85 @@
-{% extends "base.html" %}
-
-{% block title %}Outfit Catalog{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-<h1>Outfit Catalog</h1>
+<h2>Katalog Fashion</h2>
 
-{% if categories %}
-    <h2>Kategori:</h2>
-    <ul>
-        {% for category in categories %}
-            <li>{{ category.name }}</li>
+<form method="get" class="mb-3">
+    <select name="category" onchange="this.form.submit()">
+        <option value="">Semua Kategori</option>
+        {% for cat in categories %}
+            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>
+                {{ cat|title }}
+            </option>
         {% endfor %}
-    </ul>
-{% endif %}
+    </select>
+</form>
 
-<hr>
-
-{% if outfits %}
-    {% for outfit in outfits %}
-        <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 20px;">
-            <h3>{{ outfit.title }} ({{ outfit.category.name }})</h3>
-            {% if outfit.image %}
-                <img src="{{ outfit.image.url }}" alt="{{ outfit.title }}" width="200">
-            {% endif %}
-            <p>{{ outfit.description }}</p>
+<div class="row">
+    {% for outfit in page_obj %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if outfit.image %}
+                    <img src="{{ outfit.image.url }}" class="card-img-top" alt="{{ outfit.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ outfit.name }}</h5>
+                    <p class="card-text">{{ outfit.category }}</p>
+                </div>
+            </div>
         </div>
     {% endfor %}
-{% else %}
-    <p>belum ada outfit.</p>
-{% endif %}
+</div>
+
+<nav>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Previous</a>
+      </li>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+      <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+        <a class="page-link" href="?page={{ num }}{% if selected_category %}&category={{ selected_category }}{% endif %}">{{ num }}</a>
+      </li>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Next</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+
+<style>
+    .outfit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+    .outfit-card {
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease-in-out;
+    }
+    .outfit-card:hover {
+        transform: scale(1.02);
+    }
+    .outfit-card img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+    }
+    .card-content {
+        padding: 15px;
+    }
+    .card-content h2 {
+        margin: 0;
+        font-size: 1.2em;
+    }
+</style>
 {% endblock %}

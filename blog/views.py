@@ -1,16 +1,36 @@
 import requests
-from django.http import JsonResponse
+from django.shortcuts import render
 
-def get_fashion_articles(request):
-    # Kirim permintaan ke API berita
-    response = requests.get(
-        'https://newsapi.org/v2/everything',
-        params={
-            'q': 'fashion',              # cari artikel tentang fashion
-            'sortBy': 'publishedAt',     # urutkan berdasarkan yang terbaru
-            'language': 'en',            # pakai bahasa inggris
-            'apiKey': 'API_KEY_KAMU'     
-        }
+API_KEY = '1fa3d195718d47738f63adf9941b5fc3'
+
+def fetch_articles():
+    url = (
+        f'https://newsapi.org/v2/everything?'
+        f'q=fashion&'
+        f'language=en&'
+        f'sortBy=publishedAt&'
+        f'apiKey={API_KEY}'
     )
+    
+    try:
+        response = requests.get(url)
+        data = response.json()
+        if data.get('status') == 'ok':
+            return [
+                {
+                    'title': article['title'],
+                    'summary': article['description'],
+                    'url': article['url'],
+                    'urlToImage': article.get('urlToImage'),
+                }
+                for article in data.get('articles', [])
+                if article.get('title') and article.get('description')
+            ]
+    except Exception as e:
+        print(f"Error: {e}")
+    
+    return []
 
-    return JsonResponse(response.json())
+def blog_list(request):
+    articles = fetch_articles()
+    return render(request, 'blog/blog_list.html', {'articles': articles})
