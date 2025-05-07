@@ -1,85 +1,55 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block title %}Fashion Catalog{% endblock %}
 
 {% block content %}
-<h2>Katalog Fashion</h2>
+<section class="catalog-header text-center py-5" style="background-color: #f5f5dc;">
+    <h1 class="display-4" style="font-family: 'Playfair Display', serif;">Explore Our Lookbook</h1>
+    <p class="lead" style="color: #555;">Find your perfect outfit across every season & style.</p>
+</section>
 
-<form method="get" class="mb-3">
-    <select name="category" onchange="this.form.submit()">
-        <option value="">Semua Kategori</option>
+<div class="container my-5">
+    <div class="text-center mb-4">
         {% for cat in categories %}
-            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>
-                {{ cat|title }}
-            </option>
+            <a href="?category={{ cat }}" class="btn btn-outline-dark mx-2 {% if selected_category == cat %}active{% endif %}">
+                {{ cat }}
+            </a>
         {% endfor %}
-    </select>
-</form>
+    </div>
 
-<div class="row">
-    {% for outfit in page_obj %}
+    <div class="row mt-4">
+        <!-- Outfit 1 -->
         <div class="col-md-4 mb-4">
-            <div class="card">
-                {% if outfit.image %}
-                    <img src="{{ outfit.image.url }}" class="card-img-top" alt="{{ outfit.name }}">
-                {% endif %}
+            <div class="card outfit-card h-100">
+                <img src="https://i.pinimg.com/originals/19/16/44/191644c79886aae2b1f72a6cf5cca2d5.png" class="card-img-top" alt="Casual Denim Jacket">
                 <div class="card-body">
-                    <h5 class="card-title">{{ outfit.name }}</h5>
-                    <p class="card-text">{{ outfit.category }}</p>
+                    <h5 class="card-title">Casual Denim Jacket</h5>
+                    <p class="card-text">Perfect for your street style outfit in any season.</p>
                 </div>
             </div>
         </div>
-    {% endfor %}
-</div>
-
-<nav>
-  <ul class="pagination">
-    {% if page_obj.has_previous %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Previous</a>
-      </li>
-    {% endif %}
-
-    {% for num in page_obj.paginator.page_range %}
-      <li class="page-item {% if page_obj.number == num %}active{% endif %}">
-        <a class="page-link" href="?page={{ num }}{% if selected_category %}&category={{ selected_category }}{% endif %}">{{ num }}</a>
-      </li>
-    {% endfor %}
-
-    {% if page_obj.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Next</a>
-      </li>
-    {% endif %}
-  </ul>
-</nav>
-
-<style>
-    .outfit-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-        padding: 20px;
-    }
-    .outfit-card {
-        background-color: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        transition: transform 0.2s ease-in-out;
-    }
-    .outfit-card:hover {
-        transform: scale(1.02);
-    }
-    .outfit-card img {
-        width: 100%;
-        height: 260px;
-        object-fit: cover;
-    }
-    .card-content {
-        padding: 15px;
-    }
-    .card-content h2 {
-        margin: 0;
-        font-size: 1.2em;
-    }
-</style>
+    
+        <!-- Outfit 2 -->
+        <div class="col-md-4 mb-4">
+            <div class="card outfit-card h-100">
+                <img src="https://i.pinimg.com/736x/f0/2a/4f/f02a4f7c4996b710b910303828a5822b.jpg" class="card-img-top" alt="Minimalist Beige Set">
+                <div class="card-body">
+                    <h5 class="card-title">Minimalist Beige Set</h5>
+                    <p class="card-text">A clean unisex look with soft neutral tones.</p>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Outfit 3 -->
+        <div class="col-md-4 mb-4">
+            <div class="card outfit-card h-100">
+                <img src="https://i.pinimg.com/736x/7b/e6/bd/7be6bd7e31b90fb495d71672c061968b.jpg" class="card-img-top" alt="Sporty Streetwear">
+                <div class="card-body">
+                    <h5 class="card-title">Sporty Streetwear</h5>
+                    <p class="card-text">A stylish yet comfortable choice for daily hustle.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 {% endblock %}

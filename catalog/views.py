@@ -15,11 +15,7 @@ def list_outfit(request):
 
     categories = Outfit.objects.values_list('category', flat=True).distinct()
 
-    return render(request, 'catalog/outfits.html', {
-        'page_obj': page_obj,
-        'selected_category': category,
-        'categories': categories,
-    })
+    return render(request, 'catalog/outfits.html', {'outfits': outfits})
 
 def home(request):
     return render(request, 'home/index.html')

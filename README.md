@@ -1,5 +1,5 @@
-# Website Fashion Catalog
-Website ini dirancang untuk menampilkan katalog fashion dan artikel-artikel fashion
+# Website Fashion Catalog ⭐
+Website ini dirancang untuk menampilkan katalog fashion dan artikel-artikel fashion 
 
 ## Whats in This Web?
 1. **Home** - Pilihan kategori fashion berdasarkan jenis.
