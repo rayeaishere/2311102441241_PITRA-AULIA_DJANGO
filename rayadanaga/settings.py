@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     'blog',
     'home',
     'rest_framework',
+    'accounts',
 ]
+
+LOGIN_REDIRECT_URL = '/'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
