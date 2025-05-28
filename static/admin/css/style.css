@@ -1,21 +1,273 @@
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    display: flex;
+    background: #fff;
 }
 
-.navbar-brand img {
-    margin-right: 10px;
+.banner {
+  background-image: url('/static/images/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 80px 20px;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+}
+.banner-text h1 {
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
 }
 
-.navbar-nav .nav-link {
-    font-weight: 500;
-    margin-left: 15px;
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #1e1e1e;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: #ffffff;
+.logo {
+    font-size: 24px;
+    margin-bottom: 40px;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover {
-    color: #ffc107;
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
 }
+
+.nav-menu ul li {
+    margin: 20px 0;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.nav-menu ul li a:hover {
+    color: #f06292;
+}
+
+.content {
+    margin-left: 270px;
+    padding: 40px;
+    max-width: 700px;
+}
+
+form {
+    background: #fafafa;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #f06292;
+    outline: none;
+    background-color: #fff8fa;
+}
+
+form button,
+form input[type="submit"] {
+    background-color: #f06292;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover,
+form input[type="submit"]:hover {
+    background-color: #ec407a;
+}
+
+.register-container {
+    margin-left: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #ffeef3, #fff);
+    padding: 20px;
+}
+
+/* Box utama form register */
+.register-box {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+/* Judul */
+.register-box h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #f06292;
+    margin-bottom: 30px;
+    font-family: 'Poppins', serif;
+}
+
+/* Label dan input */
+.register-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
+}
+
+.register-box input[type="text"],
+.register-box input[type="email"],
+.register-box input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.register-box input:focus {
+    border-color: #f06292;
+    background-color: #fff4f7;
+    outline: none;
+}
+
+/* Tombol submit */
+.register-box button,
+.register-box input[type="submit"] {
+    background-color: #f06292;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-box button:hover,
+.register-box input[type="submit"]:hover {
+    background-color: #ec407a;
+}
+
+/* Kontainer luar agar box benar-benar di tengah halaman */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #ffeef3 50%, #ffffff 50%);
+}
+
+/* Box login */
+.login-box {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Judul login */
+.login-box h2 {
+    margin-bottom: 24px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #f06292;
+}
+
+/* Form */
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+}
+
+.login-box label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: #f06292;
+    background-color: #fff1f6;
+}
+
+/* Tombol */
+.login-box button {
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #f06292;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-box button:hover {
+    background-color: #e91e63;
+}
+

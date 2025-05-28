@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Edit Post - {{ form.instance.judul }}{% endblock %}
+
+{% block content %}
+<h2>Edit Postingan</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+    <a href="{% url 'post_detail' pk=form.instance.pk %}" class="btn btn-secondary">Batal</a>
+</form>
+{% endblock %}

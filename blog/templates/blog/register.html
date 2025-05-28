@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'admin/css/style.css' %}">
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-box">
+            <h2 style="text-align: center;">Registrasi</h2>
+            <form method="POST" novalidate>
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="mb-3">
+                    {{ form.username.label_tag }} {{ form.username }} {{ form.username.errors }}
+                </div>
+                <div class="mb-3">
+                    {{ form.email.label_tag }} {{ form.email }} {{ form.email.errors }}
+                </div>
+                <div class="mb-3">
+                    {{ form.password1.label_tag }} {{ form.password1 }} {{ form.password1.errors }}
+                </div>
+                <div class="mb-3">
+                    {{ form.password2.label_tag }} {{ form.password2 }} {{ form.password2.errors }}
+                </div>
+                <button type="submit" class="btn btn-pastel" style="width: 100%;">Daftar</button>
+                <div style="margin-top: 15px; text-align: center;">
+                    <a href="{% url 'register' %}">Belum punya akun? Daftar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

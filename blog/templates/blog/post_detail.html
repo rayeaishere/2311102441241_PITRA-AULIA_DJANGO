@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.judul }} - Rae's Blog{% endblock %}
+
+{% block content %}
+<!-- Banner -->
+<div class="mb-4 p-4 text-center text-white" style="background: linear-gradient(90deg, #f78ca0, #f9748f); border-radius: 12px;">
+  <h1 style="margin: 0;">{{ post.judul }}</h1>
+  <p>Detail Postingan Lengkap 📖</p>
+</div>
+
+{% if post.image %}
+  <img src="{{ post.image.url }}" alt="{{ post.judul }}" class="img-fluid rounded mb-4">
+{% endif %}
+
+<p>{{ post.isi }}</p>
+<p><small>Dibuat pada: {{ post.created_at|date:"d M Y, H:i" }}</small></p>
+
+<hr>
+
+<h3>Komentar</h3>
+{% for comment in comments %}
+  <div class="mb-3 border p-2 rounded">
+    <strong>{{ comment.nama }}</strong> berkata:<br>
+    <p>{{ comment.isi }}</p>
+    <small class="text-muted">{{ comment.created_at|date:"d M Y H:i" }}</small>
+  </div>
+{% empty %}
+  <p>Belum ada komentar.</p>
+{% endfor %}
+
+<hr>
+
+<h3>Tambah Komentar</h3>
+<form method="post" class="mb-5">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-success">Kirim Komentar</button>
+</form>
+
+<hr>
+
+<a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-warning">✏️ Edit Post</a>
+<a href="{% url 'post_delete' pk=post.pk %}" class="btn btn-danger">🗑️ Hapus Post</a>
+{% endblock %}

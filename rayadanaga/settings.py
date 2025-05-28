@@ -38,15 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'catalog',
-    'blog',
-    'home',
-    'rest_framework',
-    'accounts',
+    'blog', 
 ]
 
-LOGIN_REDIRECT_URL = '/'
-
+ 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -62,6 +57,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+LOGIN_REDIRECT_URL = 'post_list' 
+LOGOUT_REDIRECT_URL = 'post_list'
 
 ROOT_URLCONF = 'rayadanaga.urls'
 

@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}Beranda - Rae's Blog{% endblock %}
+
+{% block content %}
+<!-- Banner -->
+<div class="mb-4 p-4 text-center text-white" style="background: linear-gradient(90deg, #f78ca0, #f9748f); border-radius: 12px;">
+  <h1 style="margin: 0;">Rae's Blog</h1>
+  <p>Read and Write your new inspiring posts</p>
+</div>
+
+<h2 class="mb-4">📚 Postingan yang Baru</h2>
+
+{% for post in posts %}
+  <div class="card mb-4 shadow-sm">
+    {% if post.image %}
+      <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+    {% endif %}
+    <div class="card-body">
+      <h4 class="card-title">{{ post.judul }}</h4>
+      <p class="card-text">{{ post.isi|truncatewords:30 }}</p>
+      <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-primary">Baca Selengkapnya</a>
+    </div>
+  </div>
+{% empty %}
+  <p>Belum ada postingan.</p>
+{% endfor %}
+{% endblock %}

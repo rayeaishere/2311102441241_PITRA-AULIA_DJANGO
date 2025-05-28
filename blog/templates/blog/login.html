@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - Rae's Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'admin/css/style.css' %}" />
+</head>
+<body>
+    <div class="login-container" style="max-width: 400px; margin: 5rem auto; font-family: 'Poppins', sans-serif;">
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Login</h2>
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="mb-3">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+            <div class="mb-3">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                {{ form.password.errors }}
+            </div>
+            <button type="submit" class="btn btn-pastel" style="width: 100%;">Login</button>
+        </form>
+    </div>
+</body>
+</html>
