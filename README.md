@@ -1,9 +1,9 @@
-# Website Fashion Catalog ⭐
-Website ini dirancang untuk menampilkan katalog fashion dan artikel-artikel fashion 
+# Website Blog ⭐
+Website ini dirancang untuk menampilkan blog
 
 ## Whats in This Web?
-1. **Home** - Pilihan kategori fashion berdasarkan jenis.
-2. **Blog** - Artikel seputar dunia fashion.
+1. **Home**
+2. **Blog** 
 
 ## Cara Menjalankannya
 1. Clone Project - git clone https://github.com/rayeaishere/2311102441241_PITRA-AULIA_DJANGO.git
